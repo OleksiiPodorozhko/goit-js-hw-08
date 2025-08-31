@@ -83,4 +83,26 @@ function createMarkup() {
 }
 
 const gallery = document.querySelector('.gallery');
-gallery.insertAdjacentHTML("beforeend", createMarkup());
+
+gallery.insertAdjacentHTML('beforeend', createMarkup());
+
+gallery.addEventListener('click', event => {
+  const link = event.target.closest('.gallery-link');
+  const img = event.target.closest('.gallery-image');
+
+  if (link) {
+    event.preventDefault();
+  }
+
+  if (img) {
+    const instance = basicLightbox.create(`
+      <img
+        class="modal-image"
+        src="${img.dataset.source}"
+        alt="${img.alt}"
+      />
+    `);
+
+    instance.show();
+  }
+});
