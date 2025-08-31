@@ -95,11 +95,11 @@ gallery.addEventListener('click', event => {
   }
 
   if (img) {
-    showLightbox();
+    showLightbox(img);
   }
 });
 
-function showLightbox() {
+function showLightbox(img) {
   const instance = basicLightbox.create(`
       <img
         class="modal-image"
