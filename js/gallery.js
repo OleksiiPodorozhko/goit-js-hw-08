@@ -64,6 +64,8 @@ const images = [
   },
 ];
 
+const gallery = document.querySelector('.gallery');
+
 function createMarkup() {
   return images
     .map(
@@ -82,8 +84,6 @@ function createMarkup() {
     .join('');
 }
 
-const gallery = document.querySelector('.gallery');
-
 gallery.insertAdjacentHTML('beforeend', createMarkup());
 
 gallery.addEventListener('click', event => {
@@ -95,7 +95,12 @@ gallery.addEventListener('click', event => {
   }
 
   if (img) {
-    const instance = basicLightbox.create(`
+    showLightbox();
+  }
+});
+
+function showLightbox() {
+  const instance = basicLightbox.create(`
       <img
         class="modal-image"
         src="${img.dataset.source}"
@@ -103,6 +108,5 @@ gallery.addEventListener('click', event => {
       />
     `);
 
-    instance.show();
-  }
-});
+  instance.show();
+}
